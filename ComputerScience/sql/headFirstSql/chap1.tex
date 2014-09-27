@@ -1,0 +1,88 @@
+\chapter{Dados e tabelas}
+\label{chap:dados_tabelas}
+
+Uma \textbf{tabela} é um arranjo de \textbf{linhas} e \textbf{colunas}, onde as \textbf{colunas} são as categorias e as \textbf{linhas} são os dados de cada unidade (pessoa, objeto etc). Cada \textbf{coluna}, ou \textbf{campo}, possui um tipo. Cada \textbf{linha} representa um \textbf{registro}.
+
+Um \textbf{banco de dados} é um local que guarda tabelas e outras estruturas relacionadas a essas tabelas. Todas as tabelas em um banco de dados precisam estar interligadas de alguma forma (precisam pertencer ao mesmo conceito).
+
+Para criar uma base de dados, abra o console mysql e digite (o uso de maiúscula é uma boa prática, não uma obrigatoriedade):
+
+\sqlcode{code/chap1/create01.sql}
+
+E você pode mostrar a lista de base de dados com:
+
+\sqlcode{code/chap1/show01.sql}
+
+\begin{observacao}
+Uma observação cabe aqui: você precisa ter o mysql instalado. Ok, você pode fazer isso com o pacote do \textit{XAMPP} ou instalar separadamente. Seja como for, execute o mysql com as opções \verb|-u root -p| e digite a senha do \textit{root} (apenas tecle \textit{ENTER} se não configurou).
+\end{observacao}
+
+Para começar a usar um banco de dados existente, é necessário usar o comando \verb|USE|:
+
+\sqlcode{code/chap1/use01.sql}
+
+\section{Criando uma tabela}
+\label{sec:criando_tabela}
+
+Para criar uma tabela em uma base de dados, usamos o comando \verb|CREATE TABLE|:
+
+\sqlcode{code/chap1/create02.sql}
+
+\verb|VARCHAR| é o tipo, neste caso \textit{string}. Para uma data usamos \verb|DATE|, para valores decimais usamos \verb|DEC|, para valores inteiros usamos \verb|INT|, e assim por diante. É preciso checar a sua versão do sql para ver quais nomes são utilizados.
+
+Para descrever uma tabela em um banco de dados, use o comando \verb|DESC|:
+
+\sqlcode{code/chap1/describe01.sql}
+
+\section{Recriando tabelas}
+\label{sec:recriando_tabelas}
+
+O comando \verb|DROP| permite deletar algo, seja uma base de dados ou tabela. Por exemplo, para deletar uma base de dados faça:
+
+\sqlcode{code/chap1/drop01.sql}
+
+O seguinte comando deleta uma tabela:
+
+\sqlcode{code/chap1/drop02.sql}
+
+\begin{observacao}
+Atenção: isso apagará o banco/tabela, assim como todos os dados! Tenha cuidado!
+\end{observacao}
+
+\begin{observacao}
+O comando \verb|SOURCE| poderá executar um script sql com todos os comandos que ele tiver:
+
+\bashcode{code/chap1/source01.sh}
+\end{observacao}
+
+Assim, depois de excluir uma tabela, você pode recriá-la usando o comando \verb|CREATE TABLE|. Mais adiante aprenderemos como adicionar campos sem precisar deletar toda a tabela.
+
+\section{Inserindo valores em uma tabela}
+\label{sec:inserindo_dados_tabela}
+
+O comando \verb|INSERT| permite inserir valores em uma tabela. Vejamos um exemplo de uso:
+
+\sqlcode{code/chap1/insert01.sql}
+
+Se houvesse um campo numérico, o valor desse campo não poderia ter aspas.
+
+Ao inserir valores, você pode omitir as colunas na declaração, mas os valores precisam estar na mesma ordem como no banco de dados. Ou então você pode alterar a ordem das colunas ou até omitir algumas, mas os valores precisam corresponder a ordem e as colunas que você declarou.
+
+Para ver o conteúdo de uma tabela, use \verb|SELECT|:
+
+\sqlcode{code/chap1/select01.sql}
+
+Os campos que não foram preenchidos recebem \verb|NULL|. Para prevenir campos que devem ser preenchidos, use \verb|NOT NULL| no momento de criação da tabela.
+
+\sqlcode{code/chap1/create03.sql}
+
+Você pode definir um valor padrão para um campo com o comando \verb|DEFAULT|. Esse campo será preenchido com esse valor se não for definido um:
+
+\sqlcode[firstline=1,lastline=7]{code/chap1/create04.sql}
+\sqlcode[firstline=8,firstnumber=8]{code/chap1/create04.sql}
+
+
+
+
+
+

@@ -1,0 +1,107 @@
+\documentclass[a4paper,11pt]{report}
+
+\usepackage[left=2.5cm,right=3cm,top=2.5cm,bottom=3cm]{geometry}
+\setlength{\parindent}{3em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.1}
+\usepackage{indentfirst}
+
+\AtBeginDocument{\addtocontents{toc}{\protect\setlength{\parskip}{0pt}}}
+
+\usepackage[brazilian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[colorlinks=true]{hyperref}
+\usepackage[usenames,dvipsnames]{color}
+
+\usepackage{minted}
+
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+
+\newmintedfile[phpcode]{php}{
+bgcolor=bg,
+fontfamily=tt,
+linenos=true,
+numberblanklines=true,
+numbersep=12pt,
+numbersep=5pt,
+gobble=0,
+frame=leftline,
+framerule=0.4pt,
+framesep=2mm,
+funcnamehighlighting=true,
+tabsize=4,
+obeytabs=false,
+mathescape=false
+samepage=false, %with this setting you can force the list to appear on the same page
+showspaces=false,
+showtabs =false,
+texcl=false,
+}
+
+\newmintedfile[sqlcode]{sql}{
+bgcolor=bg,
+fontfamily=tt,
+linenos=true,
+numberblanklines=true,
+numbersep=12pt,
+numbersep=5pt,
+gobble=0,
+frame=leftline,
+framerule=0.4pt,
+framesep=2mm,
+funcnamehighlighting=true,
+tabsize=4,
+obeytabs=false,
+mathescape=false
+samepage=false, %with this setting you can force the list to appear on the same page
+showspaces=false,
+showtabs =false,
+texcl=false,
+}
+
+\newmintedfile[bashcode]{bash}{
+bgcolor=bg,
+fontfamily=tt,
+linenos=true,
+numberblanklines=true,
+numbersep=12pt,
+numbersep=5pt,
+gobble=0,
+frame=leftline,
+framerule=0.4pt,
+framesep=2mm,
+funcnamehighlighting=true,
+tabsize=4,
+obeytabs=false,
+mathescape=false
+samepage=false, %with this setting you can force the list to appear on the same page
+showspaces=false,
+showtabs =false,
+texcl=false,
+}
+
+\title{Anotações do livro Head First Sql}
+\author{J Carlos Viana F}
+\date{}
+
+\newenvironment{observacao}{%
+\begin{quotation}
+\noindent
+\color{Brown}
+}{
+\end{quotation}
+}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\input chap1
+
+\input chap2
+
+\end{document}

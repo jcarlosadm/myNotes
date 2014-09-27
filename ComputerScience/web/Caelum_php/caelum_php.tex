@@ -1,0 +1,206 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[section]{minted}
+
+\usepackage[brazilian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{color}
+
+\title{Anotações da apostila Html, Css, Javascript e Php da Caelum (a partir do capítulo 8)}
+\author{J Carlos Viana Filho}
+\date{}
+
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+
+\newmintedfile[phpcode]{php}{
+bgcolor=bg,
+fontfamily=tt,
+linenos=true,
+numberblanklines=true,
+numbersep=12pt,
+numbersep=5pt,
+gobble=0,
+frame=leftline,
+framerule=0.4pt,
+framesep=2mm,
+funcnamehighlighting=true,
+tabsize=4,
+obeytabs=false,
+mathescape=false
+samepage=false, %with this setting you can force the list to appear on the same page
+showspaces=false,
+showtabs =false,
+texcl=false,
+}
+
+\newmintedfile[htmlcode]{html}{
+bgcolor=bg,
+fontfamily=tt,
+linenos=true,
+numberblanklines=true,
+numbersep=12pt,
+numbersep=5pt,
+gobble=0,
+frame=leftline,
+framerule=0.4pt,
+framesep=2mm,
+funcnamehighlighting=true,
+tabsize=4,
+obeytabs=false,
+mathescape=false
+samepage=false, %with this setting you can force the list to appear on the same page
+showspaces=false,
+showtabs =false,
+texcl=false,
+}
+
+\newmintedfile[bashcode]{bash}{
+bgcolor=bg,
+fontfamily=tt,
+linenos=true,
+numberblanklines=true,
+numbersep=12pt,
+numbersep=5pt,
+gobble=0,
+frame=leftline,
+framerule=0.4pt,
+framesep=2mm,
+funcnamehighlighting=true,
+tabsize=4,
+obeytabs=false,
+mathescape=false
+samepage=false, %with this setting you can force the list to appear on the same page
+showspaces=false,
+showtabs =false,
+texcl=false,
+}
+
+\begin{document}
+
+% título
+
+\makeatletter
+\begin{center}
+\textsl{\LARGE \@title}
+\end{center}
+
+\begin{flushright}
+\emph{\@author}
+\end{flushright}
+\makeatother
+
+% sumário
+
+\tableofcontents
+
+\newpage
+
+% começo das anotações
+
+\section{Rodar PHP no servidor local}
+
+Para rodar o php no servidor local, entre na pasta e execute o comando:\\
+
+\bashcode{bashcodes/initphp.sh}
+
+O argumento \verb|-S| habilita o servidor php. Para testar, basta digitar \textit{localhost:8080} no navegador. Se passar \verb|0.0.0.0| no lugar do IP (que acima passamos \verb|localhost|), você estará habilitando todos os IPs da máquina. Isso quer dizer que o servidor estará acessível na rede local.
+
+Um exemplo de código php:\\
+
+\phpcode{phpcodes/basic.php}
+
+\section{Modularização}
+
+Por meio da função \verb|include()| é possível incluir código de outro arquivo php. Por exemplo, digamos que você tenha um arquivo de cabeçalho chamado \verb|cabecalho.php|:\\
+
+\htmlcode{phpcodes/cabecalho.html}
+
+Para inserir esse cabeçalho na página php, faça:\\
+
+\phpcode{phpcodes/cabecalho.php}
+
+\section{Variáveis}
+
+As variáveis em php começam com \verb|$|. Você não declara o tipo de variável: esse tipo é definido de acordo com o conteúdo da variável. Você pode definir variáveis em php de forma a especificar arquivos \textit{css}, por exemplo. Neste contexto o php pode ser muito útil para definir que arquivos de estilo ou que códigos \textit{javascript} o navegador deverá carregar. Por exemplo:\\
+
+\phpcode{phpcodes/var001.php}
+
+\section{Formulários}
+
+Para enviar objetos \verb|form|, usamos um de dois métodos: \verb|GET| e \verb|POST|. Enquanto \verb|GET| envia o formulário na \textit{url}, o método \verb|POST| envia o formulário no corpo da requisição. Por exemplo:\\
+
+\htmlcode{phpcodes/form001.html}
+
+Os dados enviados no formulários podem ser recebidos no php por meio das variáveis \verb|$_GET| e \verb|POST|, dependendo do método utilizado.
+
+Para acessar o valor de um campo, precisamos do nome deste campo. No \textit{HTML}, definimos esse nome como segue abaixo:\\
+
+\htmlcode{phpcodes/form002.html}
+
+E acessamos esse campo com:\\
+
+\phpcode{phpcodes/form003.php}
+
+\section{Banco de dados e SQL}
+
+Para usar banco de dados com php, em primeiro lugar instale o \textit{MySQL} ou baixe o \textit{phpMyAdmin}. Se escolher baixar o \textit{phpMyAdmin}, vá até a pasta e execute o php em uma porta diferente (como \verb|8000|.
+
+\subsection{Conexão}
+
+Para se conectar ao banco de dados, basta usar a função \verb|mysqli_connect|:\\
+
+\phpcode{phpcodes/mysql001.php}
+
+A função receberá onde se conectar (\textit{localhost}), o usuário(\textit{root}), a senha e o nome do banco de dados disponível(\textit{wd43}). Se tudo der certo, a variável \verb|$conexao| receberá a conexão aberta.
+
+\subsection{A busca}
+
+Com a conexão aberta, podemos realizar buscas no banco de dados. A função \verb|mysqli_query| permite isso. Ela recebe a conexão aberta e a SQL da busca:\\
+
+\phpcode{phpcodes/mysql002.php}
+
+A variável \verb|$dados| receberá seja lá o que a busca retornar.
+
+\subsection{Dados no PHP}
+
+Para usar esses dados no PHP, podemos utilizar a função \verb|mysqli_fetch_array|, que apenas passa os dados para a forma de um array:\\
+
+\phpcode{phpcodes/mysql003.php}
+
+\subsection{Refinando a busca}
+
+Há muitas opções no SQL para se refinar buscas. A cláusula \verb|WHERE| é uma delas, que faz com que só retornem dados que atendam uma certa especificação.\\
+
+\phpcode{phpcodes/mysql004.php}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

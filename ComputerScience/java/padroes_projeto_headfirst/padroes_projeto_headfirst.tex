@@ -1,0 +1,94 @@
+\documentclass[a4paper,11pt]{report}
+
+\usepackage[brazilian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{color}
+
+\usepackage{minted}
+
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+
+\newmintedfile[javacode]{java}{
+bgcolor=bg,
+fontfamily=tt,
+linenos=true,
+numberblanklines=true,
+numbersep=12pt,
+numbersep=5pt,
+gobble=0,
+frame=leftline,
+framerule=0.4pt,
+framesep=2mm,
+funcnamehighlighting=true,
+tabsize=4,
+obeytabs=false,
+mathescape=false
+samepage=false, %with this setting you can force the list to appear on the same page
+showspaces=false,
+showtabs =false,
+texcl=false,
+}
+
+\title{Notas do livro Padrões de Projeto}
+\author{J Carlos Viana F}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Bem vindo aos padrões de projeto}
+\label{chap:bemvindo}
+
+\section{Padrão deste capítulo}
+
+\textbf{Padrão Strategy.} Define uma família de algoritmos, encapsula cada um deles e os torna intercambiáveis. A estratégia deixa o algoritmo variar independentemente dos clientes que o utilizam.
+
+\section{Princípios}
+
+\begin{itemize}
+\item Identifique os aspectos de seu aplicativo que variam e separe-os do que permanece igual.
+\item Programe para uma interface, não uma implementação.
+\item Dê prioridade à composição
+\end{itemize}
+
+\section{Como funciona o padrão Strategy}
+
+Em primeiro lugar, separe o que permanece igual daquilo que muda. Por exemplo, digamos que você possui uma superclasse \textit{Duck} que possui comportamentos \textit{Fly()}, \textit{Quack()}, \textit{Display()} e \textit{Swing()}. Digamos que os comportamentos \textit{Fly()} e \textit{Quack()} é que mudam para cada subclasse de \textit{Duck}.
+
+Neste caso, o que fazemos é substituir esses métodos que se alteram por uma instância de uma interface que possui implementações distintas para cada comportamento de \textit{Fly()} e \textit{Quack()}. Vejamos em primeiro lugar a interface \textit{FlyBehavior}:
+
+\javacode{code/chap1/interface_flybehavior.java}
+
+Agora vejamos a interface \textit{QuackBehavior}:\\
+
+\javacode{code/chap1/interface_quackbehavior.java}
+
+Veja que temos, em cada caso, a interface e as implementações. Você pode definir quantas implementações desejar, e isso já nos fornece alguma flexibilidade. Vejamos como fica a classe \textit{Duck}:
+
+\javacode{code/chap1/Duck.java}
+
+Agora, para mostrar o motivo de fazer tudo isso, vejamos como fica a classe derivada de \textit{Duck}:\\
+
+\javacode{code/chap1/MallardDuck.java}
+
+Agora vamos observar como uma instância de \textit{MallardDuck} é usada:\\
+
+\javacode[firstline=1,lastline=3]{code/chap1/TestMallardDuck.java}
+\javacode[firstline=4,firstnumber=4]{code/chap1/TestMallardDuck.java}
+
+Agora, digamos que alguém queira uma classe que representa um pato que possa usar um foguete como método de vôo. Quais as alterações no projeto? Apenas implemente \textit{flyBehavior} em uma nova classe \textit{FlyRocketPowered} e faça a nova classe de pato instancializar esse comportamento de vôo. Observe que esse comportamento de vôo novo pode ser adotado por outras classes de pato (ou seja, existe reuso).
+
+Também tem outra vantagem nisso tudo: a possibilidade de alterar o comportamento de vôo e grasnar \textit{durante o tempo de execução}. Você pode fazer o \textit{MallardDuck} voar com foguetes durante a execução do programa. Basta criar um método em \textit{Duck} que altere a variável de instância \textit{flyBehavior} para uma instância de outra classe de comportamento de vôo. É por esse e outros motivos que a composição sempre deve ser preferível à herança.
+
+\chapter{Mantendo os seus objetos atualizados - o padrão Observer}
+\label{chap:observer}
+
+(p 46)
+
+\end{document}

@@ -1,0 +1,97 @@
+%pdflatex -shell-escape somatorios.tex
+
+\documentclass[a4paper,11pt,fleqn]{article}
+
+%\usepackage{minted}
+\usepackage[brazilian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks=true]{hyperref}
+%\usepackage{color}
+
+\begin{document}
+
+% titulo
+
+\begin{center}
+\textsl{\LARGE Apêndice A : Somatórios}\\
+
+\textsl{\large ALGORITMOS - Cormen et al - 2ª ed}
+\end{center}
+
+\begin{flushright}
+\emph{Anotações - página 835}
+\end{flushright}
+
+\begin{flushright}
+\emph{J Carlos Viana Filho}
+\end{flushright}
+
+\section{Formulas e propriedades}
+
+Dada a sequência finita $a_{1}, a_{2}, ..., a_{n}$, onde $n$ é um inteiro não negativo, pode-se escrever essa sequência como:
+
+\[ \sum\limits_{k=1}^{n}a_{k}. \]
+
+Se $n=0$, então o valor do somatório é definido como $0$.
+
+Dada uma sequência $a_{1}, a_{2}, ...,$ a soma infinita $a_{1} + a_{2} + ...$ pode ser escrita como:
+
+
+\[ \sum\limits_{k=1}^{\infty}a_{k}, \]
+
+que é interpretada com o significado
+
+\[\lim_{n \to \infty} \sum\limits_{k=1}^{n}a_{k}. \]
+
+Se o limite existir, a série \textbf{\textit{diverge}}; caso contrário, ela \textbf{\textit{converge}}.
+
+\subsection{Linearidade}
+
+Para qualquer número real c e quaisquer sequências finitas $a_{1}, a_{2}, ..., a_{n}$ e $b_{1}, b_{2}, ..., b_{n}$,
+
+\[ \sum\limits_{k=1}^{n}(ca_{k} + b_{k}) = c\sum\limits_{k=1}^{n}a_{k} + \sum\limits_{k=1}^{n}b_{k}. \]
+
+\subsection{Série aritmética}
+
+O seguinte somatório é uma série e tem o seguinte valor:
+
+\begin{equation}
+\sum\limits_{k=1}^{n}k = 1 + 2 + \ldots + n = \frac{1}{2} n(n + 1) = \mathcal{O} (n^{2}).
+\end{equation}
+
+\subsection{Somas de quadrados e cubos}
+
+Temos os seguintes somatórios de quadrados e cubos:
+
+\begin{equation}
+\sum\limits_{k=0}^{n}k^{2} = \frac{n(n+1)(2n+1)}{6},
+\end{equation}
+
+\begin{equation}
+\sum\limits_{k=0}^{n}k^{3} = \frac{n^{2}(n+1)^{2}}{4}.
+\end{equation}
+
+\subsection{Série geométrica}
+
+Para o real $x \neq 1$, o somatório
+
+\[ \sum\limits_{k=0}^{n}x^{k} = 1 + x + x^{2} + \ldots + x^{n} \]
+
+é uma \textbf{\textit{série geométrica}} ou \textbf{\textit{exponencial}} e tem o valor
+
+\begin{equation}
+\sum\limits_{k=0}^{n}x^{k} = \frac{x^{n+1} - 1}{x - 1}.
+\end{equation}
+
+Quando o somatório é infinito e $|x|<1$, temos a série geométrica infinitamente decrescente
+
+\begin{equation}
+\sum\limits_{k=0}^{\infty}x^{k} = \frac{1}{1-x}.
+\end{equation}
+
+\subsection{Série harmônica}
+
+
+
+\end{document}
