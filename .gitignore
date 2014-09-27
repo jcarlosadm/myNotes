@@ -1,0 +1,8 @@
+**/*.pdf
+**/*.aux
+**/*.listing
+**/*.log
+**/*.out
+**/*.pyg
+**/*.synctex.gz
+**/*.toc
