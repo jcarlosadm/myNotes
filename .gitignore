@@ -6,3 +6,5 @@
 **/*.pyg
 **/*.synctex.gz
 **/*.toc
+**/*.bbl
+**/*.blg
