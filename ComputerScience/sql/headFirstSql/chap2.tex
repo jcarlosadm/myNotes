@@ -1,2 +1,15 @@
 \chapter{O comando SELECT}
 \label{chap:comando_select}
+
+Usamos o comando \verb|SELECT| para encontrar informações relevantes em tabelas. Por exemplo:
+
+\sqlcode{code/chap2/select01.sql}
+
+O que o código acima faz é selecionar todas as colunas da tabela \verb|MEUS_CONTATOS|. Podemos melhorar isso.
+
+\section{A cláusula WHERE}
+\label{sec:clausula_where}
+
+Com o comando \verb|SELECT| podemos usar a cláusula \verb|WHERE|, que serve para refinar uma seleção, informando ao sql alguma restrição. Por exemplo:
+
+\sqlcode{code/chap2/select02.sql}
