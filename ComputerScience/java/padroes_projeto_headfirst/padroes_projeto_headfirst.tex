@@ -89,6 +89,50 @@ Também tem outra vantagem nisso tudo: a possibilidade de alterar o comportament
 \chapter{Mantendo os seus objetos atualizados - o padrão Observer}
 \label{chap:observer}
 
-(p 46)
+\section{Padrão desse capítulo}
+
+\textbf{Padrão Observer.} Esse padrão define uma dependência um-para-muitos entre objetos de modo que quando um objeto mude de estado todos os seus dependentes sejam avisados e atualizados automaticamente.
+
+\section{Princípios}
+
+\begin{itemize}
+\item Procure usar designs levemente ligados entre objetos que interagem
+\end{itemize}
+
+\section{Como funciona o padrão Observer}
+
+Neste padrão o que temos é uma classe observável que pode ter o seu estado alterado a qualquer momento, e um conjunto de classes observadoras que estão interessadas na mudança de estado dessa classe observável. Então, como faremos para os observadores serem notificados de alguma mudança da classe observável?
+
+Podemos usar duas interfaces para isso: \textit{Subject} (a classe observável) e \textit{Observer} (a classe observadora).
+
+A interface \textit{Subject} possui três métodos básicos: \textit{registerObserver()}, \textit{removeObserver()} e \textit{notifyObserver()}. As duas primeiras apenas gerenciam quem de fato são os observadores desta classe. A terceira informa aos observadores interessados que alguma mudança ocorreu.\\
+
+\javacode{code/chap2/Subject.java}
+
+A interface \textit{Observer} possui apenas um método: \textit{update()}, que faz algo com a informação obtida da classe observável. Quem chama esse método, na verdade, é a classe observável. Então você deve implementar \textit{update()} de modo a executar algum bloco de código quando a classe observável mudar.\\
+
+\javacode{code/chap2/Observer.java}
+
+Uma nota sobre o método \textit{update()}: veja que ele recebe um parâmetro do tipo \textit{Object}. Você pode implementar esse método para que receba outros dados, mas talvez seja mais útil receber uma referência para a classe observável (e fazer o cast apropriado) de modo a obter somente os dados necessários.
+
+A classe que implementar \textit{Subject} terá uma lista de objetos do tipo \textit{Observer}. Quando for necessário, basta disparar o método \textit{notifyObservers()}, que chamará o método \textit{update()} de cada objeto da lista. O método \textit{update()} irá atualizar cada objeto do tipo \textit{Observer} apropriadamente.
+
+\section{API do pacote java.util}
+
+A linguagem java possui uma API para esse padrão por meio de uma interface \textit{Observer} e uma classe \textit{Observable} de java.util.
+
+A classe \textit{Observable} possui quatro métodos (você não precisa implementá-los): \textit{addObserver}, \textit{deleteObserver}, \textit{notifyObserver()} e \textit{setChange()}. Em primeiro lugar, a classe observável deve extender \textit{Observable} de java.util. Quando o estado da classe observável mudar, você deve chamar \textit{setChange()}, para logo em seguida chamar um dos métodos \textit{notifyObservers()}: com ou sem argumentos. Se for com argumentos, é do tipo \textit{Object} (são dados adicionais além daqueles que normalmente são enviados).
+
+Cada classe observadora deve implementar a interface \textit{Observer} de java.util. Essa interface tem apenas um método: \textit{update(Observable obs, Object arg)}. Implemente-o do mesmo modo que na seção anterior.
+
+O problema com essa API é que \textit{Observable} é uma classe, não uma interface. Porém, ela pode ser apropriada para diversas situações.
+
+\section{Uso do padrão Observer}
+
+Diversas APIs e bibliotecas usam esse padrão o tempo todo. Por exemplo, bibliotecas gráficas precisam saber quando o usuário clica em um botão.
+
+\chapter{Decorando objetos - o padrão Decorator}
+
+
 
 \end{document}
