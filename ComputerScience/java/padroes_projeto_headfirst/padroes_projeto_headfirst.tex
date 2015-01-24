@@ -132,7 +132,36 @@ O problema com essa API é que \textit{Observable} é uma classe, não uma inter
 Diversas APIs e bibliotecas usam esse padrão o tempo todo. Por exemplo, bibliotecas gráficas precisam saber quando o usuário clica em um botão.
 
 \chapter{Decorando objetos - o padrão Decorator}
+\label{chap:decorator}
 
+\section{Padrão deste capítulo}
 
+\textbf{Decorator.} Anexa responsabilidades adicionais a um objeto dinamicamente. Os decoradores fornecem uma alternativa flexível de subclasse para estender a funcionalidade.
+
+\section{Princípios}
+
+\begin{itemize}
+\item As classes devem estar abertas para extensão, mas fechadas para modificação
+\end{itemize}
+
+\section{Como o padrão Decorator funciona}
+
+Devemos, primeiro, ter uma classe abstrata base (ou interface base) para as classes concretas que serão estendidas (ou implementadas), e também para a classe decoradora abstrata base (ou interface). Cada classe decoradora concreta estende da classe decoradora base (ou implementa). Vejamos um exemplo:\\
+
+\javacode{code/chap3/BaseClass.java}
+
+\javacode{code/chap3/BaseDecorator.java}
+
+\javacode{code/chap3/ConcreteBase1.java}
+
+\javacode{code/chap3/ConcreteDecorator1.java}
+
+\javacode{code/chap3/ConcreteDecorator2.java}
+
+O objetivo é instanciar uma classe base concreta (neste caso \textbf{ConcreteBase1}) e compor com uma ou mais instâncias de classes concretas decoradoras (neste caso são \textbf{ConcreteDecorator1} e \textbf{ConcreteDecorator2}). Vejamos como fazemos isso:
+
+\javacode{code/chap3/Main.java}
+
+A saída será a \textit{string} acumulada do objeto base mais todos os decoradores, inclusive os repetidos. Muitas APIs utilizam desse padrão. É preciso ter cuidado com ele, e somente usá-lo quando necessário, pois ele introduzirá muita complexidade no código.
 
 \end{document}
